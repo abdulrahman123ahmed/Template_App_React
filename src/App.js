@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
 function App() {
+  const Navbar = React.lazy(() => import("./components/NavBar/NavBar"))
+  const Home = React.lazy(() => import("./components/Home/Home"))
+  const About = React.lazy(() => import("./components/About/About"))
+  const Develop = React.lazy(() => import("./components/Developer/Developer.jsx"))
+  const Contact = React.lazy(() => import("./components/Contact/Contact.jsx"))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <React.Suspense fallback={<div>Loading ....</div>}>
+        <Navbar />
+        <Home />
+        <About /> 
+        <Develop /> 
+        <Contact /> 
+      </React.Suspense>
     </div>
   );
 }
